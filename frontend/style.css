@@ -34,7 +34,7 @@
 
 .card-background {
     position: absolute;
-    top: 20rem;
+    top: 18.2rem;
     width: 28rem;
     border-radius: 1rem;
     transition-duration: 0.7s;
@@ -87,7 +87,7 @@
 
 .card-background-purple {
     position: absolute;
-    top: 16.4rem;
+    top: 18.2rem;
     width: 28rem;
     background-color: #456741;
     border-radius: 1rem;

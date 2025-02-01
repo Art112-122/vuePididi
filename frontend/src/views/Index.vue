@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar.vue'
 export default {
   name: 'IndexMain',
   components: {
-    Nav: NavBar,
+    NavBar: NavBar,
   }
 }
 </script>
@@ -22,7 +22,7 @@ export default {
     >
   </head>
   <body>
-  <Nav/>
+  <NavBar/>
   <div class="fixed-grid has-9-cols">
     <div class="grid">
       <div class="cell is-col-start-3"><h1 class="title is-1" style="text-align: center">ПВББ</h1>
@@ -72,7 +72,7 @@ export default {
           <path
               d="M270-160q-50 0-82-36t-27-85H61l13-60h112q15-18 36.5-28.5T270-380q26 0 47.5 10.5T354-341h198l92-399H186l3-13q5-21 21-34t37-13h472l-39 170h125l114 152-39 197h-80q5 49-27.5 85T690-160q-50 0-82-36t-27-85H380q5 49-27.5 85T270-160Zm364-270h215l6-33-80-107H666l-32 140Zm1-273 9-37-92 399 8-36 34-146 41-180ZM22-437l15-60h220l-15 60H22Zm80-146 15-60h260l-15 60H102Zm168 363q21 0 35.5-15t14.5-35q0-21-14.5-35.5T270-320q-20 0-35 14.5T220-270q0 20 15 35t35 15Zm420 0q21 0 35.5-15t14.5-35q0-21-14.5-35.5T690-320q-20 0-35 14.5T640-270q0 20 15 35t35 15Z"/>
         </svg>
-        <div class="subtitle is-3" style="text-align: center; font-family: fantasy">Быстрые переводы без комисии!
+        <div class="subtitle is-3" style="text-align: center; font-family: fantasy">Швидка комісія без переводів !
         </div>
         <div class="subtitle is-6 pt-3" style="text-align: center">Или все-таки нет!?</div>
 
