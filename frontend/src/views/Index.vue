@@ -1,11 +1,9 @@
 <script>
-import NavBar from '../components/NavBar.vue'
 
 
 export default {
   name: 'IndexMain',
   components: {
-    NavBar: NavBar,
   }
 }
 </script>
@@ -22,7 +20,7 @@ export default {
     >
   </head>
   <body>
-  <NavBar/>
+
   <div class="fixed-grid has-9-cols">
     <div class="grid">
       <div class="cell is-col-start-3"><h1 class="title is-1" style="text-align: center">ПВББ</h1>
