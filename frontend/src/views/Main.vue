@@ -34,7 +34,7 @@ export default {
   </head>
   <body>
 
-  <Nav name=""/>
+  <Nav/>
 
   <h1 class="py-4"></h1>
 
@@ -86,8 +86,8 @@ export default {
   </div>
   <div class="cell is-col-start-4">
     <div class="box card-background" style="background-color: #bd8c19;" id="repostop"></div>
-    <div class="box card-yellow" style="width: 28rem" v-on:mousemove="reposition_top('repostop', '19.2rem')"
-         v-on:mouseout="reposition_top('repostop', '18.2rem')">
+    <div class="box card-yellow" style="width: 28rem" v-on:mousemove="reposition_top('repostop', '17.3rem')"
+         v-on:mouseout="reposition_top('repostop', '16.5rem')">
       <div style="text-align: start; font-size: 2rem" id="">ПВББ</div>
       <div style="text-align: center; font-size: 3rem" class="py-6">
         1488 2281 1234 1111
