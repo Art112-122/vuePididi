@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <router-view style="overflow-x: auto;"/>
+  <router-view/>
 </template>
 
 

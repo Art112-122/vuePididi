@@ -1,5 +1,6 @@
 <script>
 import NavBar from '../components/NavBar.vue'
+import footer from "../components/MainFooter.vue";
 import get from '../api/api.js'
 
 let arr = get
@@ -10,7 +11,8 @@ console.log(arr)
 export default {
   name: 'App',
   components: {
-    Nav: NavBar
+    Nav: NavBar,
+    Footer: footer,
   },
   methods: {
     reposition_top(id, data) {
@@ -39,10 +41,9 @@ export default {
   <h1 class="py-4"></h1>
 
   <div class="fixed-grid has-9-cols">
-  <div class="grid purple-background">
+  <div class="grid purple-background pt-6">
   <div class="cell is-col-start-2">
 
-    <div class="title is-1 has-text-centered pb-3">Добрий день, Артём</div>
     <div class="title is-1 has-text-centered pb-6">1222.05
       <svg class="pl-2" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
            fill="#8C1AF6">
@@ -85,9 +86,10 @@ export default {
     </div>
   </div>
   <div class="cell is-col-start-4">
+
     <div class="box card-background" style="background-color: #bd8c19;" id="repostop"></div>
-    <div class="box card-yellow" style="width: 28rem" v-on:mousemove="reposition_top('repostop', '17.3rem')"
-         v-on:mouseout="reposition_top('repostop', '16.5rem')">
+    <div class="box card-yellow" style="width: 28rem" v-on:mousemove="reposition_top('repostop', '20.4rem')"
+         v-on:mouseout="reposition_top('repostop', '19.5rem')">
       <div style="text-align: start; font-size: 2rem" id="">ПВББ</div>
       <div style="text-align: center; font-size: 3rem" class="py-6">
         1488 2281 1234 1111
@@ -124,7 +126,7 @@ export default {
 
   </div>
   </div>
-
+  <Footer/>
   </body>
   </html>
 </template>

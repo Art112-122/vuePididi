@@ -57,7 +57,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.4) !important;
   position: fixed;
   padding: 5px;
-  border-radius: 20%;
+  border-radius: 10%;
   user-select: none;
   text-align: center;
   font-family: sans-serif;
