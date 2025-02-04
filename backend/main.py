@@ -1,6 +1,6 @@
 from flask_bcrypt import Bcrypt
+from flask import Flask, response, jsonify, request, make_response
 from smtplib import SMTP
-from flask import Flask, request, jsonify, make_response, url_for, redirect
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
@@ -26,7 +26,6 @@ def register():
         return jsonify({'error': str(e)}), 400
 
 
-@app.post('/login')
 def set_cookie():
     try:
         data = request.get_json()
@@ -47,12 +46,10 @@ def set_cookie():
             path='/'  # путь, где доступен cookie
         )
         return response
-
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
 
-@app.get('/login')
 def get_cookie():
     try:
         user_id = request.cookies.get('user_id')
@@ -68,7 +65,6 @@ def get_cookie():
         return jsonify({'error': str(e)}), 500
 
 
-@app.post('/login')
 def delete_cookie():
     try:
         response = make_response(jsonify({
@@ -117,17 +113,6 @@ def get_all_cookies():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-
-@app.post("/logining/")
-def login_page():
-    username = request.form.get("username")
-    password = request.form.get("password")
-    if username == "manager":
-        return redirect(url_for(""))
-    if password == "very_secret_password":
-        return redirect(url_for(""))
-    return redirect(url_for("menu_page"))
 
 
 if __name__ == '__main__':
