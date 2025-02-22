@@ -1,7 +1,25 @@
 import axios from 'axios';
-function axios_get() {
-    axios.get('https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=5')
+import cookie from 'js-cookie';
+
+
+function axios_get(path) {
+    axios.get(path)
 }
+
+function cookie_get(key) {
+    return cookie.get(key);
+}
+
+function cookie_set(key, data) {
+    cookie.set(key, data, { expires: 30 })
+}
+
+
 export default {
     axios_get
+}
+
+export const cookies = {
+    cookie_get,
+    cookie_set,
 }

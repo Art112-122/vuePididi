@@ -1,7 +1,14 @@
 <script>
 import footer from "../components/MainFooter.vue";
 
+
+
 export default {
+  data() {
+    return {
+      theme : this.$store.getters.theme,
+    }
+  },
   name: 'IndexMain',
   components: {
     Footer: footer,
@@ -25,7 +32,7 @@ export default {
   <div class="fixed-grid has-9-cols">
     <div class="grid">
       <div class="cell is-col-start-3"><h1 class="title is-1" style="text-align: center">ПВББ</h1>
-        <h2 class="subtitle is-6" style="text-align: center; font-family: fantasy">Банк потужних бобрів</h2></div>
+        <h2 class="subtitle is-6" style="text-align: center; font-family: fantasy">{{theme}}</h2></div>
       <div class="cell is-col-start-8">
         <a class="icon-text pt-5">
                     <span class="icon">
@@ -37,7 +44,7 @@ export default {
         </a>
       </div>
       <div class="cell is-col-start-9">
-        <a class="icon-text pt-5" href="">
+        <a class="icon-text pt-5" href="http://localhost:8080/#/register">
                     <span class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
                              fill="#8C1AF6"><path
@@ -67,7 +74,7 @@ export default {
 
         <div class="py-6"></div>
         <svg xmlns="http://www.w3.org/2000/svg" height="200px" viewBox="0 -960 960 960" width="200px"
-             fill="#8C1AF6">
+             fill="#FFFFFF">
           <path
               d="M270-160q-50 0-82-36t-27-85H61l13-60h112q15-18 36.5-28.5T270-380q26 0 47.5 10.5T354-341h198l92-399H186l3-13q5-21 21-34t37-13h472l-39 170h125l114 152-39 197h-80q5 49-27.5 85T690-160q-50 0-82-36t-27-85H380q5 49-27.5 85T270-160Zm364-270h215l6-33-80-107H666l-32 140Zm1-273 9-37-92 399 8-36 34-146 41-180ZM22-437l15-60h220l-15 60H22Zm80-146 15-60h260l-15 60H102Zm168 363q21 0 35.5-15t14.5-35q0-21-14.5-35.5T270-320q-20 0-35 14.5T220-270q0 20 15 35t35 15Zm420 0q21 0 35.5-15t14.5-35q0-21-14.5-35.5T690-320q-20 0-35 14.5T640-270q0 20 15 35t35 15Z"/>
         </svg>
@@ -80,7 +87,7 @@ export default {
 
       <div class="cell is-col-start-7">
         <svg xmlns="http://www.w3.org/2000/svg" height="200px" viewBox="0 -960 960 960" width="200px"
-             fill="#8C1AF6">
+             fill="#FFFFFF">
           <path
               d="M479.88-200Q434-200 402-232.12q-32-32.12-32-78T402.12-388q32.12-32 78-32T558-387.88q32 32.12 32 78T557.88-232q-32.12 32-78 32ZM165-490q18-117 107-193.5T479-760q81 0 149 37t112 99v-136h60v270H530v-60h186q-32-67-95.17-108.5T480-700q-93.55 0-164.77 59.5Q244-581 226-490h-61Z"/>
         </svg>
@@ -93,7 +100,7 @@ export default {
 
 
         <svg xmlns="http://www.w3.org/2000/svg" height="200px" viewBox="0 -960 960 960" width="200px"
-             fill="#8C1AF6">
+             fill="#FFFFFF">
           <path
               d="M180-80q-24 0-42-18t-18-42v-620q0-24 18-42t42-18h65v-60h65v60h340v-60h65v60h65q24 0 42 18t18 42v620q0 24-18 42t-42 18H180Zm0-60h600v-430H180v430Zm0-490h600v-130H180v130Zm0 0v-130 130Zm300 230q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z"/>
         </svg>
