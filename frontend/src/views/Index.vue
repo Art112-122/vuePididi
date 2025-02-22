@@ -1,14 +1,10 @@
 <script>
 import footer from "../components/MainFooter.vue";
-
+// import store from "../store/index";
 
 
 export default {
-  data() {
-    return {
-      theme : this.$store.getters.theme,
-    }
-  },
+
   name: 'IndexMain',
   components: {
     Footer: footer,
@@ -31,8 +27,9 @@ export default {
 
   <div class="fixed-grid has-9-cols">
     <div class="grid">
+      <div class="cell is-col-start-3"><svg height="30px" width="30px"></svg></div>
       <div class="cell is-col-start-3"><h1 class="title is-1" style="text-align: center">ПВББ</h1>
-        <h2 class="subtitle is-6" style="text-align: center; font-family: fantasy">{{theme}}</h2></div>
+        <h2 class="subtitle is-6" style="text-align: center; font-family: fantasy">Банк потужних бобрів</h2></div>
       <div class="cell is-col-start-8">
         <a class="icon-text pt-5">
                     <span class="icon">

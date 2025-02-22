@@ -1,6 +1,7 @@
 <script>
+import state from "./store/index";
 console.log("Ширина окна: " + window.innerWidth);
-console.log("Высота окна: " + window.innerHeight);
+console.log(state.state.isAuth);
 
 
 export default {

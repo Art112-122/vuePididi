@@ -6,6 +6,7 @@ import Login from './views/Login.vue'
 import Settings from "./views/Settings.vue";
 import Transactions from './views/Transaction.vue'
 import History from './views/CashHistory.vue'
+import store from './store/index'
 
 
 const routes= [
@@ -30,9 +31,9 @@ router.beforeEach((to, ) => {
 
     // Redirect the user to the login page if the user is not authenticated
     // And not already attempting to visit the login or register pages
-    if (this.$store.state.isAuth && to.path !== '/login' && to.path !== '/register') {
+    if (store.state.isAuth === false && to.path !== '/login' && to.path !== '/register' && to.path !== '/') {
         return {
-            name: '/login'
+            name: 'login'
         }
     }
 })

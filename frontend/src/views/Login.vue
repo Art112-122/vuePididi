@@ -19,7 +19,7 @@ export default {
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
     >
-    <link rel="stylesheet" href="../static/style.css">
+
   </head>
   <body class="purple-background">
 
