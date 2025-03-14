@@ -1,25 +1,16 @@
-import axios from 'axios';
+import Axios from 'axios';
 import cookie from 'js-cookie';
+import axios from "axios";
 
 
-function axios_get(path) {
-    axios.get(path)
-}
 
-function cookie_get(key) {
-    return cookie.get(key);
-}
 
-function cookie_set(key, data) {
-    cookie.set(key, data, { expires: 30 })
+function httpGet(url) {
+    axios.get(url).then(response => {return response}).catch(error => {return "!*#$!"})
 }
 
 
-export default {
-    axios_get
+function createJWT(token) {
+    cookie.set("token", token);
 }
 
-export const cookies = {
-    cookie_get,
-    cookie_set,
-}

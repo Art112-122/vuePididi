@@ -6,7 +6,8 @@ import Login from './views/Login.vue'
 import Settings from "./views/Settings.vue";
 import Transactions from './views/Transaction.vue'
 import History from './views/CashHistory.vue'
-import store from './store/index'
+import Reset from './views/ResetPassword.vue'
+import store from './store'
 
 
 const routes= [
@@ -17,6 +18,7 @@ const routes= [
         {path: '/settings', component: Settings, name:"settings"},
         {path: '/transaction', component: Transactions, name:"transaction"},
         {path: '/history', component: History, name:"history"},
+        {path: '/resetPassword', component: Reset, name:"resetPassword"},
     ]
 
 
@@ -26,11 +28,9 @@ const router = createRouter({
     history: createWebHistory(),
     routes})
 
-// Global Navigation Guard for Authentication Checks
+
 router.beforeEach((to, ) => {
 
-    // Redirect the user to the login page if the user is not authenticated
-    // And not already attempting to visit the login or register pages
     if (store.state.isAuth === false && to.path !== '/login' && to.path !== '/register' && to.path !== '/') {
         return {
             name: 'login'

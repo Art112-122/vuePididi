@@ -1,22 +1,37 @@
 <script>
-import state from "./store/index";
+
 console.log("Ширина окна: " + window.innerWidth);
-console.log(state.state.isAuth);
+
 
 
 export default {
   name: 'App',
+
 }
 </script>
 
 <template>
+  <html lang="en">
+  <header>
+    <meta charset="UTF-8">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    >
+  </header>
+  <body>
   <div>
-  <router-view/>
+    <router-view/>
   </div>
+  </body>
+  </html>
+
 </template>
 
 
 
-<style src="../style.css">
+<style>
+@import './assets/style.css';
+
 
 </style>

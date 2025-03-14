@@ -1,22 +1,46 @@
 <script>
+import "js-cookie"
 
+import {createJWT} from "@/api/api"
 
 export default {
   name: 'App',
   data() {
     return {
+      classAlert: false,
+      classAlert2: false,
+      alertValue: "",
+      alertValue2: "",
       passType: false,
+      passValue: "",
+      passValue2: "",
     }
   },
   methods: {
-    seePassword(id) {
-      let dataDom = document.getElementById(id);
-      if (dataDom.type === "password") {
-        dataDom.type = "text";
+    createJWT,
+    passManager() {
+
+      if (this.passValue === null) {
+        this.alertValue = "Заповніть це поле"
+      } else if (this.passValue.length <= 5) {
+        this.alertValue = "Пароль закороткий!"
+      } else if (this.passValue.length >= 12) {
+        this.alertValue = "Пароль завеликий!"
+      } else {
+        this.alertValue = ''
       }
+      this.classAlert = this.alertValue !== "";
+    },
+    passSecondManager() {
+      if (this.passValue !== this.passValue2) {
+        this.alertValue2 = "Паролі не співпадають"
+      }
+
       else {
-        dataDom.type = "password";
+        this.alertValue2 = ''
       }
+      this.classAlert2 = this.alertValue2 !== "";
+      this.classAlert = this.classAlert2 === true;
     }
   }
 }
@@ -39,51 +63,71 @@ export default {
 
 
   <div class="columns">
-    <div class="column is-4">
-    </div>
 
-    <div class="column is-one-quarter">
+
+    <div class="column is-one-quarter box pr-5"
+         style="border-bottom-left-radius: 0; border-top-left-radius: 0; height: 102vh;">
       <div class="py-6"></div>
-      <div class="card p-3">
 
-        <h1 class="title has-text-centered">Реєстрація</h1>
-        <label class="label title is-5">Никнейм</label>
-        <input class="input" type="text" placeholder="ПІБ" name="username">
-        <label class="label title is-5 pt-4">Email</label>
-        <input class="input" type="email" placeholder="mypost@gmail.com" name="email">
-        <label class="label title is-5 pt-4">Пароль</label>
-        <input class="input" placeholder="password123" name="password" :type="passType ? 'text' : 'password'">
+    <form method="post">
+      <h1 class="title has-text-centered">Реєстрація</h1>
+      <label class="ml-3 label title is-5">Никнейм</label>
+      <input class="ml-3 input" type="text" placeholder="ПІБ" name="username" required>
+      <label class="ml-3 label title is-5 pt-4">Email</label>
+      <input class="ml-3 input" type="email" placeholder="mypost@gmail.com" name="email" required>
+      <label class="ml-3 label title is-5 pt-4">Пароль</label>
+      <input v-on:input="passSecondManager" :class="classAlert ? 'is-danger' : ''" v-on:focusout="passManager" v-model="passValue" class="ml-3 input" placeholder="password123" required
+             name="password" :type="passType ? 'text' : 'password'">
+      <div :class="classAlert ? 'anim' : ''" v-if="alertValue" class="ml-5 icon-text my-1">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#bd5656"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+        </span>
+        <span class="title is-5" style="color: #bd5656">{{ alertValue }}</span>
 
-
-        <label class="checkbox pl-2">
-          <input type="checkbox" v-on:click="passType =! passType">
-          Показать
-        </label>
-
-        <div class="pt-3 pb-1">
-          <input class="button is-link" type="submit" value="Войти" id="submitButton">
-        </div>
-
+      </div>
+      <label class="ml-3 label title is-5 pt-4">Повторення пароля</label>
+      <input :class="classAlert2 ? 'is-danger' : ''" v-on:input="passSecondManager" v-on:focusout="passSecondManager" v-model="passValue2" class="ml-3 input" placeholder="password123"
+             name="passwordcheck" :type="passType ? 'text' : 'password'" required>
+      <div :class="classAlert2 ? 'anim' : ''" v-if="alertValue2" class="ml-5 icon-text my-1">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#bd5656"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+        </span>
+        <span class="title is-5" style="color: #bd5656">{{ alertValue2 }}</span>
 
       </div>
 
-      <h4 style="text-align: center"><strong>Уже есть акаунт? <a href="">Вход</a></strong></h4>
+      <label class="checkbox ml-3 pl-2">
+        <input type="checkbox" v-on:click="passType =! passType">
+        Показати
+      </label>
+
+      <div class="ml-5 pt-3 pb-1">
+        <input :disabled = "classAlert" class="button is-link" type="submit" value="Увійти" id="submitButton">
+      </div>
+    </form>
+
+
+
+
+      <h4 style="text-align: center"><strong>Вже є акаунт? <a href="/login">Вхід</a></strong></h4>
 
     </div>
+
   </div>
-
-
-  <div class="py-6"></div>
-  <div class="py-6"></div>
-  <div class="py-6"></div>
-  <div class="py-6"></div>
-
 
 
   </body>
   </html>
 </template>
 
-<style src="../../style.css">
+<style>
+
+
+.anim {
+  animation: heartBeat 1s !important;
+}
+
+
+
 
 </style>

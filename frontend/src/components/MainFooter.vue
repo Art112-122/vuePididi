@@ -10,11 +10,9 @@
              rel="noopener noreferrer">Конфідинціальність и политика</a>
         </div>
         <div class="cell">
-          <figure class="ml-6 qr-code" style="">
-            <img src="../assets/qr_code.png" alt="Qr code Never gon... by rick">
-          </figure>
+
         </div>
-        <div class="cell">Cell 3</div>
+        <div class="cell"></div>
       </div>
     </div>
 

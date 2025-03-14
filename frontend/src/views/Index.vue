@@ -27,11 +27,10 @@ export default {
 
   <div class="fixed-grid has-9-cols">
     <div class="grid">
-      <div class="cell is-col-start-3"><svg height="30px" width="30px"></svg></div>
       <div class="cell is-col-start-3"><h1 class="title is-1" style="text-align: center">ПВББ</h1>
         <h2 class="subtitle is-6" style="text-align: center; font-family: fantasy">Банк потужних бобрів</h2></div>
       <div class="cell is-col-start-8">
-        <a class="icon-text pt-5">
+        <a class="icon-text pt-5" href="/login">
                     <span class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
                              fill="#8C1AF6"><path
@@ -41,7 +40,7 @@ export default {
         </a>
       </div>
       <div class="cell is-col-start-9">
-        <a class="icon-text pt-5" href="http://localhost:8080/#/register">
+        <a class="icon-text pt-5" href="/register">
                     <span class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
                              fill="#8C1AF6"><path
@@ -117,6 +116,6 @@ export default {
   </html>
 </template>
 
-<style src="../../style.css">
+<style>
 
 </style>

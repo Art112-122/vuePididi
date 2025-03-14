@@ -1,3 +1,4 @@
+@import "animate.css";
 
 .purple-text {
     color: #8C1AF6;
@@ -6,6 +7,8 @@
 
 
 .purple-background {
+    width: 100vw;
+    height: 102vh;
     background-image: linear-gradient(70deg, #5665CE, #CAA1AB);
 }
 
@@ -24,7 +27,7 @@
     background-image: linear-gradient(#ffd71e, #fae851);
     color: white;
     border-radius: 1rem;
-    box-shadow: #3c3c3c 0rem 2rem 3rem;
+    box-shadow: #3c3c3c 0rem 3rem 4rem;
     transform: rotateX(30deg);
     transition-duration: 0.7s;
 
@@ -100,7 +103,7 @@
 
 
 .card-anim {
-    animation: cards 20s linear infinite;
+    animation: cards 20s steps(1) infinite;
     font-family: fantasy;
     background-color: #353535;
     color: white;

@@ -1,6 +1,14 @@
 <script>
 export default {
   name: 'CashHistory',
+  data () {
+    return {
+      object1: [{cost: 1,}, {cost: 2}],
+    }
+  },
+  created() {
+
+  }
 }
 </script>
 
@@ -16,7 +24,9 @@ export default {
     >
   </head>
   <body>
-
+  <div v-for="i in object1" :key="i">
+    {{i["cost"]}}
+  </div>
 
 
 

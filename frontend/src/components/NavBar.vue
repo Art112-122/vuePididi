@@ -54,6 +54,7 @@ export default {
 </template>
 
 <style>
+@import "animate.css";
 
 .rounded-figure {
   position: fixed;
@@ -70,6 +71,10 @@ export default {
   cursor: pointer !important;
 }
 
+.rounded-figure:active {
+  animation: pulse 0.3s;
+}
+
 .tooltip {
   background-color: rgba(0, 0, 0, 0.4) !important;
   position: fixed;
@@ -80,5 +85,20 @@ export default {
   font-family: sans-serif;
   color: white;
   transition-duration: 0.5s;
+}
+
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 1.15, 1.15);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
 }
 </style>

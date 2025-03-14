@@ -101,16 +101,7 @@ export default {
 
 
   <div class="cell is-col-start-7">
-    <div class="title" style="text-align: center">Завдання на день</div>
-    <div class="box">
-      <div class="grid">
-        <div class="title is-4 p-1"></div>
-        <progress class="progress is-success" value="50" max="100">
 
-        </progress>
-        1/2
-      </div>
-    </div>
   </div>
 
     <div class="py-6"></div>
@@ -132,5 +123,5 @@ export default {
 </template>
 
 
-<style src="../../style.css">
+<style>
 </style>
