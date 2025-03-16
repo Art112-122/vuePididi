@@ -34,13 +34,19 @@ export default {
     passSecondManager() {
       if (this.passValue !== this.passValue2) {
         this.alertValue2 = "Паролі не співпадають"
+        this.classAlert2 = true
+        this.classAlert = true
       }
 
       else {
         this.alertValue2 = ''
+        this.classAlert2 = false
+        this.classAlert = this.alertValue !== "";
       }
-      this.classAlert2 = this.alertValue2 !== "";
-      this.classAlert = this.classAlert2 === true;
+    },
+    passSubmit() {
+      this.passSecondManager()
+      this.passManager()
     }
   }
 }
@@ -76,7 +82,7 @@ export default {
       <label class="ml-3 label title is-5 pt-4">Email</label>
       <input class="ml-3 input" type="email" placeholder="mypost@gmail.com" name="email" required>
       <label class="ml-3 label title is-5 pt-4">Пароль</label>
-      <input v-on:input="passSecondManager" :class="classAlert ? 'is-danger' : ''" v-on:focusout="passManager" v-model="passValue" class="ml-3 input" placeholder="password123" required
+      <input :class="classAlert ? 'is-danger' : ''" v-model="passValue" class="ml-3 input" placeholder="password123" required
              name="password" :type="passType ? 'text' : 'password'">
       <div :class="classAlert ? 'anim' : ''" v-if="alertValue" class="ml-5 icon-text my-1">
         <span class="icon">
@@ -86,7 +92,7 @@ export default {
 
       </div>
       <label class="ml-3 label title is-5 pt-4">Повторення пароля</label>
-      <input :class="classAlert2 ? 'is-danger' : ''" v-on:input="passSecondManager" v-on:focusout="passSecondManager" v-model="passValue2" class="ml-3 input" placeholder="password123"
+      <input :class="classAlert2 ? 'is-danger' : ''" v-model="passValue2" class="ml-3 input" placeholder="password123"
              name="passwordcheck" :type="passType ? 'text' : 'password'" required>
       <div :class="classAlert2 ? 'anim' : ''" v-if="alertValue2" class="ml-5 icon-text my-1">
         <span class="icon">
@@ -102,7 +108,7 @@ export default {
       </label>
 
       <div class="ml-5 pt-3 pb-1">
-        <input :disabled = "classAlert" class="button is-link" type="submit" value="Увійти" id="submitButton">
+        <input v-on:click="passSubmit" class="button is-link" type="submit" value="Увійти" id="submitButton">
       </div>
     </form>
 

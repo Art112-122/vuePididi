@@ -1,7 +1,9 @@
 <script>
 import NavBar from '../components/NavBar.vue'
 import footer from "../components/MainFooter.vue";
+import ThemeSwitch from "@/components/ThemeSwich.vue";
 import get from '../api/api.js'
+
 
 let arr = get
 
@@ -13,6 +15,7 @@ export default {
   components: {
     Nav: NavBar,
     Footer: footer,
+    ThemeSwitch: ThemeSwitch,
   },
   methods: {
     reposition_top(id, data) {
@@ -37,6 +40,8 @@ export default {
   <body>
 
   <Nav/>
+
+  <div style="position: absolute; top: 2rem; right: 5rem "><ThemeSwitch></ThemeSwitch></div>
 
   <h1 class="py-4"></h1>
 
