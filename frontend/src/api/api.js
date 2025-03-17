@@ -3,11 +3,12 @@ import axios from "axios";
 
 
 function httpGet(url, ...args) {
-    axios.get(`${url}${args}`).then(response => {
+     return axios.get(`${url}${args}`).then(response => {
         return response
     }).catch(error => {
         return JSON.stringify(error)
     })
+
 }
 
 function httpPost(url, data) {

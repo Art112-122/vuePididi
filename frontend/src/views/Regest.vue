@@ -1,12 +1,14 @@
 <script>
 import "js-cookie"
 
-import {createJWT} from "@/api/api"
+import api from "@/api/api"
 
 export default {
   name: 'App',
   data() {
     return {
+      usernameValue: "",
+      emailValue: "",
       classAlert: false,
       classAlert2: false,
       alertValue: "",
@@ -17,9 +19,10 @@ export default {
     }
   },
   methods: {
-    createJWT,
+    postButton() {
+      api.httpPost("http://127.0.0.1:7070/singup/", {username: this.usernameValue, email: this.emailValue, password: this.passValue})
+    },
     passManager() {
-
       if (this.passValue === null) {
         this.alertValue = "Заповніть це поле"
       } else if (this.passValue.length <= 5) {
@@ -75,13 +78,13 @@ export default {
          style="border-bottom-left-radius: 0; border-top-left-radius: 0; height: 102vh;">
       <div class="py-6"></div>
 
-    <form method="post">
+
       <h1 class="title has-text-centered">Реєстрація</h1>
       <label class="ml-3 label title is-5">Никнейм</label>
-      <input class="ml-3 input" type="text" placeholder="ПІБ" name="username" required>
+      <input v-model="username" class="ml-3 input" type="text" placeholder="ПІБ" name="username" required>
       <label class="ml-3 label title is-5 pt-4">Email</label>
-      <input class="ml-3 input" type="email" placeholder="mypost@gmail.com" name="email" required>
-      <label class="ml-3 label title is-5 pt-4">Пароль</label>
+      <input v-model="email" class="ml-3 input" type="email" placeholder="mypost@gmail.com" name="email" required>
+      <label class="ml-3 label title is-5 pt-4">Пароль<h6 style="font-family: cursive; font-size: 0.9rem">Від 6 до 11 символів</h6></label>
       <input :class="classAlert ? 'is-danger' : ''" v-model="passValue" class="ml-3 input" placeholder="password123" required
              name="password" :type="passType ? 'text' : 'password'">
       <div :class="classAlert ? 'anim' : ''" v-if="alertValue" class="ml-5 icon-text my-1">
@@ -108,9 +111,9 @@ export default {
       </label>
 
       <div class="ml-5 pt-3 pb-1">
-        <input v-on:click="passSubmit" class="button is-link" type="submit" value="Увійти" id="submitButton">
+        <button v-on:click="passSubmit" class="button is-link" type="submit">Увійти</button>
       </div>
-    </form>
+
 
 
 

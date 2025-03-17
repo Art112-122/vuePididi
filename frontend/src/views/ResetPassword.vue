@@ -13,7 +13,7 @@
     <div class="py-3"></div>
     <label class="label title is-3 pt-4">Email</label>
     <input class="input" type="email" placeholder="mypost@gmail.com" name="email" style="font-size: 1.3rem !important; width: 90% !important;">
-    <div class="pt-3 pb-1" style="">
+    <div class="pt-3 pb-1">
       <input class="button is-link " type="submit" value="Надіслати" id="submitButton">
     </div>
   </div>

@@ -2,10 +2,10 @@
 import NavBar from '../components/NavBar.vue'
 import footer from "../components/MainFooter.vue";
 import ThemeSwitch from "@/components/ThemeSwich.vue";
-import get from '../api/api.js'
+import api from '../api/api.js'
 
 
-let arr = get
+let arr = api.httpGet("http://127.0.0.1:7070/token/")
 
 console.log(arr)
 
