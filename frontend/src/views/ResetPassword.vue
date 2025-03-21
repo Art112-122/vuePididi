@@ -22,14 +22,4 @@
 
 <style scoped>
 @import '../assets/style.css';
-
-.center{
-  position: absolute;
-  left: 33%;
-}
-
-.button-sub {
-  width: 120% !important;
-  height: 120% !important;
-}
 </style>

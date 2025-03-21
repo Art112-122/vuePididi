@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-<dddddd>dddddwd</dddddd>
+
 </template>
 
 <style scoped>
