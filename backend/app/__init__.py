@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_compress import Compress
 from flask_cors import CORS
+from app.routes import *
 import jwt
 
 

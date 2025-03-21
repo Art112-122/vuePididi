@@ -2,11 +2,12 @@ import sqlite3
 import smtplib
 import random
 
-from flask import render_template, request,  session, jsonify, response
+from flask import request, session, jsonify
 from flask_login import login_user
 
-from connection import get_db_connection
-from app import app, login_manager
+
+# from connection import get_db_connection
+from ...main import app
 from ..models import User
 
 users_db = {}
@@ -14,28 +15,28 @@ users_db = {}
 
 
 
-@app.get("/{str:token}/")
-def token ():
-    return jsonify(response=True), 201 
+@app.get("/token/")
+def token():
+    return f"hello"
 
 
 @app.post("/signup/")
 def post_signup():
     username = request.form["username"].strip()
     password = request.form["password"].strip()
-    gmail = request.form["gmail"].strip()
+    gmail = request.form["email"].strip()
 
     if not all([username, password, gmail]):
-        return jsonify(response-True, error_message="All fields are required"), 400
+        return jsonify(response=400, error_message="All fields are required"), 400
 
     if len(username) < 3 or len(username) > 20:
-        return jsonify(response-True, error_message="Username must be between 3 and 20 characters"), 400
+        return jsonify(response=400, error_message="Username must be between 3 and 20 characters"), 400
 
     if not gmail.endswith('@gmail.com'):
-        return jsonify(response-True, error_message="Please enter a valid Gmail address"), 400
+        return jsonify(response=400, error_message="Please enter a valid Gmail address"), 400
 
     if len(password) < 5:
-        return jsonify(response-True, error_message="Password must be at least 6 characters long"), 400
+        return jsonify(response=400, error_message="Password must be at least 6 characters long"), 400
 
     conn = get_db_connection()
     curs = conn.cursor()
@@ -45,9 +46,9 @@ def post_signup():
     if existing_user:
         conn.close()
         if existing_user[1] == username:
-            return jsonify(response-True, error_message="Username already exists"), 401
+            return jsonify(response=401, error_message="Username already exists"), 401
         else:
-            return jsonify(response-True, error_message="Email already registered"), 401
+            return jsonify(response=401, error_message="Email already registered"), 401
     try:
         curs.execute("INSERT INTO users (username, gmail, password, email_verified) VALUES (?, ?, ?, 0)",
                      (username, gmail, password))
@@ -68,12 +69,13 @@ def post_signup():
 
     except sqlite3.IntegrityError:
         print("Error: Integrity constraint violated.")
-        return jsonify(response-True, error_message="Email already registered"), 404
+        return jsonify(response=409, error_message="Email already registered"), 409
     except sqlite3.Error as error:
         print("Error", error)
-        return jsonify(response-True, error_message="Database error occurred"), 404
+        return jsonify(response=409, error_message="Database error occurred"), 409
     finally:
         conn.close()
+    return 201
 
 
 def send_email(to_addrs, code):
