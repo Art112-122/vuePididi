@@ -2,10 +2,10 @@
 import NavBar from '../components/NavBar.vue'
 import footer from "../components/MainFooter.vue";
 import ThemeSwitch from "@/components/ThemeSwich.vue";
-import api from '../api/api.js'
+import {httpGet} from '@/api/api.js'
 
 
-let arr = api.httpGet("http://127.0.0.1:7070/token/")
+let arr = httpGet('http://127.0.0.1:7070/token/');
 
 console.log(arr)
 
@@ -32,10 +32,6 @@ export default {
   <head>
     <meta charset="UTF-8">
     <title>ПВББ Карта</title>
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
-    >
   </head>
   <body>
 

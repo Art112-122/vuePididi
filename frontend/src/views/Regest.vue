@@ -1,16 +1,23 @@
 <script>
 import "js-cookie"
-
-import api from "@/api/api"
+import {formPost} from "@/api/api"
 
 export default {
   name: 'App',
+  components: {
+
+  },
   data() {
     return {
+      emailAlert: "",
+      usernameAlert: "",
+      isLoading: false,
       usernameValue: "",
       emailValue: "",
       classAlert: false,
       classAlert2: false,
+      classAlert3: false,
+      classAlert4: false,
       alertValue: "",
       alertValue2: "",
       passType: false,
@@ -19,8 +26,27 @@ export default {
     }
   },
   methods: {
+    userManager() {
+      if (this.usernameValue === "") {
+        this.usernameAlert = "Це поле не повинне бути порожнім!"
+        this.classAlert3 = true
+      }
+      else {
+        this.usernameAlert = ""
+        this.classAlert3 = false
+      }
+
+      if (this.emailValue === '') {
+        this.emailAlert = "Це поле не повинне бути порожнім!"
+        this.classAlert4 = true
+      }
+      else {
+        this.emailAlert = ""
+        this.classAlert4 = false
+      }
+    },
     postButton() {
-      api.httpPost("http://127.0.0.1:7070/singup/", {username: this.usernameValue, email: this.emailValue, password: this.passValue})
+      formPost("http://127.0.0.1:7070/singup/", this.isLoading, {username: this.usernameValue, email: this.emailValue, password: this.passValue})
     },
     passManager() {
       if (this.passValue === null) {
@@ -36,7 +62,7 @@ export default {
     },
     passSecondManager() {
       if (this.passValue !== this.passValue2) {
-        this.alertValue2 = "Паролі не співпадають"
+        this.alertValue2 = "Паролі не співпадають!"
         this.classAlert2 = true
         this.classAlert = true
       }
@@ -50,6 +76,12 @@ export default {
     passSubmit() {
       this.passSecondManager()
       this.passManager()
+      this.userManager()
+      if (this.alertValue === '' && this.alertValue2 === '' && this.emailAlert === "" && this.usernameAlert === '') {
+        this.isLoading = true
+        this.postButton()
+      }
+
     }
   }
 }
@@ -57,15 +89,9 @@ export default {
 
 <template>
   <!DOCTYPE html>
-  <html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>ПВББ Регистрация</title>
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
-    >
-
 
   </head>
   <body class="purple-background">
@@ -81,9 +107,23 @@ export default {
 
       <h1 class="title has-text-centered">Реєстрація</h1>
       <label class="ml-3 label title is-5">Никнейм</label>
-      <input v-model="username" class="ml-3 input" type="text" placeholder="ПІБ" name="username" required>
+      <input :class="classAlert3 ? 'is-danger' : ''" v-model="usernameValue" class="ml-3 input" type="text" placeholder="ПІБ" name="username" required>
+      <div :class="classAlert4 ? 'anim' : ''" v-if="alertValue" class="ml-5 icon-text my-1">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#bd5656"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+        </span>
+        <span class="title is-5" style="color: #bd5656">{{ usernameAlert }}</span>
+
+      </div>
       <label class="ml-3 label title is-5 pt-4">Email</label>
-      <input v-model="email" class="ml-3 input" type="email" placeholder="mypost@gmail.com" name="email" required>
+      <input :class="classAlert4 ? 'is-danger' : ''" v-model="emailValue" class="ml-3 input" type="email" placeholder="mypost@gmail.com" name="email" required>
+      <div :class="classAlert4 ? 'anim' : ''" v-if="alertValue" class="ml-5 icon-text my-1">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#bd5656"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+        </span>
+        <span class="title is-5" style="color: #bd5656">{{ emailAlert }}</span>
+
+      </div>
       <label class="ml-3 label title is-5 pt-4">Пароль<h6 style="font-family: cursive; font-size: 0.9rem">Від 6 до 11 символів</h6></label>
       <input :class="classAlert ? 'is-danger' : ''" v-model="passValue" class="ml-3 input" placeholder="password123" required
              name="password" :type="passType ? 'text' : 'password'">
@@ -126,7 +166,6 @@ export default {
 
 
   </body>
-  </html>
 </template>
 
 <style>

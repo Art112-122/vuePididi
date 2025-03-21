@@ -1,34 +1,35 @@
-import cookie from 'js-cookie';
+
 import axios from "axios";
 
 
-function httpGet(url, ...args) {
-     return axios.get(`${url}${args}`).then(response => {
-        return response
-    }).catch(error => {
-        return JSON.stringify(error)
+function httpGetWithArgs(url, ...args) {
+    axios.get(`${url}${args}`).then(response => {
+        return response.data
+    }).catch(() => {
+        return "error"
     })
 
 }
 
-function httpPost(url, data) {
+function httpGet(url) {
+    axios.get(url).then(response => {
+        return response
+    }).catch(() => {
+        return "error"
+    })
+
+}
+
+function formPost(url, loader, data) {
     axios.post(url, data).then(response => {
-        if (response <= 400) {
+        if (response.status <= 400) {
             return 'OK'
         } else {
-            return response
+            return response.data['error_message']
         }
-    }).catch(error => {
-        return JSON.stringify(error)
-    })
+    }).catch(() => {return 'error'}).finally(function loading() {loader = false})
 }
 
-function createJWT(token) {
-    cookie.set("token", token, {expires: 90});
-}
 
-function getCookie(key) {
-    cookie.get(key);
-}
 
-export default {httpGet, httpPost, createJWT, getCookie};
+export {httpGet, formPost, httpGetWithArgs};
